@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
-// License identifier to indicate that this code is licensed under the MIT License.
 
 pragma solidity ^0.8.0;
-// Specifies the Solidity version to be used for this contract.
 
 contract Voting {
     // Defines a new contract named "Voting".
