@@ -1,16 +1,35 @@
 import express from "express";
 import { checkSchema } from "express-validator";
-import { presidentialCandidate } from "../schemas/candidatesSchemas.mjs";
 import {
-  addpresidentialCardidate,
-  getPresidentialCandidates,
-} from "../controllers/candidateController.mjs";
+  addGovernorCandidateController,
+  addPresidentialCandidateController,
+  getPresidentialCandidateController,
+  getGovernorCandidateController,
+  addMPCandidateController,
+  getMPCandidateController,
+} from "../controllers/candidatesControllers.mjs";
+import {
+    addMPSchema,
+    getGovernorSchema,
+  getMPSchema,
+  governorSchema,
+  presidetialSchema,
+} from "../schemas/candidateSchema.mjs";
 
 const router = express.Router();
 
 router
   .route("/PresidentialCandidate")
-  .post(checkSchema(presidentialCandidate), addpresidentialCardidate)
-  .get(getPresidentialCandidates);
+  .post(checkSchema(presidetialSchema), addPresidentialCandidateController)
+  .get(getPresidentialCandidateController);
 
-export default router;
+router
+  .route("/GovernorCandidate")
+  .post(checkSchema(governorSchema), addGovernorCandidateController)
+  .get(checkSchema(getGovernorSchema) ,getGovernorCandidateController);
+router
+  .route("/MPCandidate")
+  .post(checkSchema(addMPSchema), addMPCandidateController)
+  .get(checkSchema(getMPSchema), getMPCandidateController);
+
+export const candidateRouter = router;
