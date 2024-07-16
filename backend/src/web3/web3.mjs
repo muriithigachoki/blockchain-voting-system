@@ -14,7 +14,7 @@ const contractPath = path.join(
 );
 const contractJSON = JSON.parse(fs.readFileSync(contractPath, "utf8"));
 const contractABI = contractJSON.abi;
-const contractAddress = "0xDD161aA26fA244976bf70b0ef3dD828AeE0B9767";
+const contractAddress = "0x53461a940CFF88810dC5d1881Bd89d3eB140778F";
 
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 

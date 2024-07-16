@@ -1,7 +1,6 @@
 import express from "express";
-import mongoose from "mongoose";
 import { web3 } from "./web3/web3.mjs";
-import router from "./routes/candidatesRoutes.mjs";
+import router from './routes/index.mjs'
 
 const app = express();
 app.use(express.json());
