@@ -8,14 +8,14 @@ export const addPresidentialCandidateController = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { username } = matchedData(req);
+  const { username, image } = matchedData(req);
   try {
     const accounts = await web3.eth.getAccounts();
     const gasEstimate = await contract.methods
-      .addPresidentialCandidate(username)
+      .addPresidentialCandidate(username, image)
       .estimateGas({ from: accounts[0] });
     const result = await contract.methods
-      .addPresidentialCandidate(username)
+      .addPresidentialCandidate(username, image)
       .send({ from: accounts[0], gas: gasEstimate });
     res.send({ transactionHash: result.transactionHash });
   } catch (error) {
@@ -42,14 +42,14 @@ export const addGovernorCandidateController = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const { county, username } = matchedData(req);
+  const { county, username, image } = matchedData(req);
   try {
     const accounts = await web3.eth.getAccounts();
     const gasEstimate = await contract.methods
-      .addGovernorCandidate(county, username)
+      .addGovernorCandidate(county, username, image)
       .estimateGas({ from: accounts[0] });
     const result = await contract.methods
-      .addGovernorCandidate(county, username)
+      .addGovernorCandidate(county, username, image)
       .send({ from: accounts[0], gas: gasEstimate });
 
     res.send({ transactionHash: result.transactionHash });
@@ -101,7 +101,7 @@ export const getMPCandidateController = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const {county, constituency} = matchedData(req);
+  const { county, constituency } = matchedData(req);
   console.log(county, constituency);
   try {
     const memberOfParliament = await contract.methods
@@ -109,7 +109,6 @@ export const getMPCandidateController = async (req, res) => {
       .call();
     res.send(convertBigIntToString(memberOfParliament));
   } catch (error) {
-    console.log(error);
     res.status(500).send(error.toString());
   }
 };
@@ -118,7 +117,7 @@ export const voteForPresident = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const {userId, candidateIndex} = matchedData(req);
+  const { userId, candidateIndex } = matchedData(req);
   console.log(userId, candidateIndex);
   try {
     const voter = await contract.methods

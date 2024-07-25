@@ -9,8 +9,8 @@ import {
   getMPCandidateController,
 } from "../controllers/candidatesControllers.mjs";
 import {
-    addMPSchema,
-    getGovernorSchema,
+  addMPSchema,
+  getGovernorSchema,
   getMPSchema,
   governorSchema,
   presidetialSchema,
@@ -26,7 +26,7 @@ router
 router
   .route("/GovernorCandidate")
   .post(checkSchema(governorSchema), addGovernorCandidateController)
-  .get(checkSchema(getGovernorSchema) ,getGovernorCandidateController);
+  .get(checkSchema(getGovernorSchema), getGovernorCandidateController);
 router
   .route("/MPCandidate")
   .post(checkSchema(addMPSchema), addMPCandidateController)

@@ -3,13 +3,13 @@ import { checkSchema } from "express-validator";
 import {
   createUserController,
   getUserController,
-  loginUserController
+  loginUserController,
 } from "../controllers/authController.mjs";
 import { authSchema, loginSchema } from "../schemas/authSchemas.mjs";
 const router = express.Router();
 
 router
-  .route("/auth")
+  .route("/createVoter")
   .get(getUserController)
   .post(checkSchema(authSchema), createUserController);
 router.route("/login").post(checkSchema(loginSchema), loginUserController);
