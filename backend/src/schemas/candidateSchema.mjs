@@ -11,21 +11,46 @@ export const presidetialSchema = {
       errorMessage: "username must be a string",
     },
   },
-};
-
-export const governorSchema = {
-  county: {
+  image: {
     notEmpty: {
       errorMessage: "username must not be empty",
     },
     isLength: {
-      options: { min: 3 },
-      errorMessage: "username must be atleast 3 characters",
+      options: { min: 15 },
+      errorMessage: "username must be atleast 15 characters",
     },
     isString: {
       errorMessage: "username must be a string",
     },
   },
+};
+
+export const governorSchema = {
+  county: {
+    notEmpty: {
+      errorMessage: "county must not be empty",
+    },
+    isLength: {
+      options: { min: 3 },
+      errorMessage: "county must be atleast 3 characters",
+    },
+    isString: {
+      errorMessage: "county must be a string",
+    },
+  },
+  image: {
+    notEmpty: {
+      errorMessage: "email must not be empty",
+    },
+    isLength: {
+      options: { min: 3 },
+      errorMessage: "email must be atleast 3 characters",
+    },
+    isString: {
+      errorMessage: "email must be a string",
+    },
+  },
+
   username: {
     notEmpty: {
       errorMessage: "username must not be empty",
@@ -43,14 +68,14 @@ export const governorSchema = {
 export const getGovernorSchema = {
   value: {
     notEmpty: {
-      errorMessage: "username must not be empty",
+      errorMessage: "value must not be empty",
     },
     isLength: {
       options: { min: 3 },
-      errorMessage: "username must be atleast 3 characters",
+      errorMessage: "value must be atleast 3 characters",
     },
     isString: {
-      errorMessage: "username must be a string",
+      errorMessage: "value must be a string",
     },
   },
 };
@@ -93,6 +118,7 @@ export const addMPSchema = {
     },
   },
 };
+
 export const getMPSchema = {
   county: {
     notEmpty: {
